@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/maickfp/todo-node/issues"
   },
-  "homepage": "https://github.com/maickfp/todo-node#readme"
+  "homepage": "https://github.com/maickfp/todo-node#readme",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
 }
