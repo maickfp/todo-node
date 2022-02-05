@@ -1,3 +1,4 @@
+
 // CLEAR CONSOLE
 console.clear();
 
@@ -6,11 +7,17 @@ console.clear();
 // OWN
 // COLOR CONFIG
 require('./config/colors');
-// MESSAGES MODULE
+// MESSAGES MODULE (MENU 0.1)
+// const { 
+    //     showMenu, 
+    //     pause 
+    // } = require('./helpers/messages');
+// MENU MADE WITH inquirer
 const { 
-    showMenu, 
+    showMainMenu,
     pause 
-} = require('./helpers/messages');
+} = require('./helpers/menuInquirer');
+
 
 // MAIN 
 const main = async () => {
@@ -19,13 +26,21 @@ const main = async () => {
 
     do{
 
-        opt = await showMenu();
+        // // MENU 0.1
+        // opt = await showMenu();
+
+        // console.log( opt );
+
+        // if( opt !== '0' ){
+        //     await pause();
+        // }
+
+        // MENU 0.2
+        opt = await showMainMenu();
 
         console.log( opt );
 
-        if( opt !== '0' ){
-            await pause();
-        }
+        await pause();
 
     }while( opt !== '0' );
 

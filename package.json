@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/maickfp/todo-node#readme",
   "dependencies": {
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "inquirer": "^8.2.0"
   }
 }
