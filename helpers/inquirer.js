@@ -44,7 +44,6 @@ const mainMenu = {
     ]
 };
 
-
 const showMainMenu = async () => {
 
     
@@ -56,7 +55,29 @@ const showMainMenu = async () => {
 
 };
 
+const showInput = async ( message ) => {
+
+    const { value } = await inquirer.prompt({
+        type: 'input',
+        name: 'value',
+        message,
+        validate: ( value ) => {
+
+            if( value.trim().length === 0 ){
+                return 'Por favor ingrese un valor'.error
+            }
+
+            return true;
+
+        }
+    });
+
+    return value;
+
+};
+
 module.exports = {
     pause,
-    showMainMenu
+    showMainMenu,
+    showInput
 };

@@ -8,7 +8,7 @@ class Task {
     desc = '';
     doneDate = null;
 
-    constructor( desc ){
+    constructor( desc = '' ){
 
         this.id = uuidv4();
         this.desc = desc.trim();
