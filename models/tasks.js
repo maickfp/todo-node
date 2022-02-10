@@ -10,16 +10,25 @@ const Task = require('./task');
 */
 class Tasks{
 
-    _listado = {};
+    _list = {};
+
+    // TASKS LIST ON ARRAY
+    get listArr (){
+
+        return Object.keys( this._list ).map( value => {
+            return this._list[ value ];
+        });
+
+    }
 
     constructor(){
-        this._listado = {};
+        this._list = {};
     }
 
     createTask( desc = '' ){
 
         const task = new Task( desc );
-        this._listado[ task.id ] = task;
+        this._list[ task.id ] = task;
 
     }
 

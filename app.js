@@ -18,10 +18,11 @@ const {
     pause,
     showInput
 } = require('./helpers/inquirer');
+// IMPORT TASKS MODEL
 const Tasks = require('./models/tasks');
 
 
-// MAIN 
+// DEFINE MAIN 
 const main = async () => {
 
     let opt = '';
@@ -52,10 +53,11 @@ const main = async () => {
             // LIST TASKS
             case '2':
 
-                if( Object.keys( tasks._listado ).length === 0 ){
+                const tasksListArr = tasks.listArr;
+                if( tasksListArr.length === 0 ){
                     console.log( 'No existen tareas para mostrar'.warning );
                 }else{
-                    console.log( tasks._listado );
+                    console.log( tasksListArr );
                 }
 
                 break;
@@ -65,7 +67,11 @@ const main = async () => {
 
     }while( opt !== '0' );
 
+    // CLEAR CONSOLE
+    console.clear();
+
 
 };
 
+// EXEC MAIN
 main();
