@@ -54,24 +54,55 @@ class Tasks{
             }
         });
 
-        const tasksListArr = this.listArr;
-        if( tasksListArr.length === 0 ){
+        this.listArr.map( ( task, i ) => {
+
+            const taskStatus = task.doneDate ? 
+                'Compleatada'.taskComleted
+                :
+                'Pendiente'.taskPending;
+
+            tasksTable.push( [ i + 1, task.desc, taskStatus ] );
+
+        });
+
+        if( tasksTable.length === 0 ){
             console.log( 'No existen tareas para mostrar'.warning );
         }else{
-            
-            tasksListArr.map( ( task, i ) => {
-
-                const taskStatus = task.doneDate ? 
-                    'Compleatada'.taskComleted
-                    :
-                    'Pendiente'.taskPending;
-
-                tasksTable.push( [ i + 1, task.desc, taskStatus ] );
-
-            });
-
             console.log( tasksTable.toString() );
+        }
 
+    }
+
+    listByStatus( completed = true ){
+
+        const tasksTable = new Table({
+            head: ['Num', 'Descripción' ],
+            colAligns: [ 'middle', 'left' ],
+            colWidths: [ 5, 75 ],
+            colors: true,
+            style: {
+                "padding-left": 1,
+                "padding-right": 1,
+                head: ['bgBlue'],
+                border: ['blue']
+            }
+        });
+
+        this.listArr.map( ( task, i ) => {
+
+            const taskStatus = !!task.doneDate;
+
+            if( taskStatus === completed ){
+                tasksTable.push( [ i + 1, task.desc ] );
+            }
+
+        });
+            
+        
+        if( tasksTable.length === 0 ){
+            console.log( 'No existen tareas para mostrar'.warning );
+        }else{
+            console.log( tasksTable.toString() );
         }
 
     }

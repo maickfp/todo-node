@@ -61,6 +61,20 @@ const main = async () => {
                 tasks.listAll();
 
                 break;
+
+            // LIST COMPLETED TASKS
+            case '3':
+
+                tasks.listByStatus( true );
+
+                break;
+
+            // LIST PENDING TASKS
+            case '4':
+
+                tasks.listByStatus( false );
+
+                break;
         }
 
         // SAVE TASKS LIST
