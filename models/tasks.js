@@ -75,10 +75,21 @@ class Tasks{
 
     listByStatus( completed = true ){
 
-        const tasksTable = new Table({
+        const tableOpts = completed ? 
+        {
+            head: ['Num', 'Descripción', 'Fecha' ],
+            colAligns: [ 'middle', 'left', 'middle' ],
+            colWidths: [ 5, 60, 15 ]
+        }
+        :
+        {
             head: ['Num', 'Descripción' ],
             colAligns: [ 'middle', 'left' ],
-            colWidths: [ 5, 75 ],
+            colWidths: [ 5, 75 ]
+        } ;
+
+        const tasksTable = new Table({
+            ...tableOpts,
             colors: true,
             style: {
                 "padding-left": 1,
@@ -94,8 +105,15 @@ class Tasks{
             const taskStatus = !!task.doneDate;
 
             if( taskStatus === completed ){
-                tasksTable.push( [ i , task.desc ] );
+                
+                const taskRow = completed ? 
+                [ i , task.desc, task.doneDate ]
+                :
+                [ i , task.desc ];
+
+                tasksTable.push( taskRow );
                 i++;
+
             }
 
         });
