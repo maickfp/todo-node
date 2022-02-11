@@ -1,3 +1,5 @@
+// IMPORT OTHERS MODULES
+const Table = require('cli-table');
 
 // IMPORT MY CLASSES
 const Task = require('./task');
@@ -34,6 +36,43 @@ class Tasks{
 
         const task = new Task( desc );
         this._list[ task.id ] = task;
+
+    }
+
+    listAll(){
+
+        const tasksTable = new Table({
+            head: ['Num', 'Descripción', 'Estado' ],
+            colAligns: [ 'middle', 'left', 'middle' ],
+            colWidths: [ 5, 60, 15 ],
+            colors: true,
+            style: {
+                "padding-left": 1,
+                "padding-right": 1,
+                head: ['bgBlue'],
+                border: ['blue']
+            }
+        });
+
+        const tasksListArr = this.listArr;
+        if( tasksListArr.length === 0 ){
+            console.log( 'No existen tareas para mostrar'.warning );
+        }else{
+            
+            tasksListArr.map( ( task, i ) => {
+
+                const taskStatus = task.doneDate ? 
+                    'Compleatada'.taskComleted
+                    :
+                    'Pendiente'.taskPending;
+
+                tasksTable.push( [ i + 1, task.desc, taskStatus ] );
+
+            });
+
+            console.log( tasksTable.toString() );
+
+        }
 
     }
 

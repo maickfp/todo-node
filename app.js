@@ -58,12 +58,7 @@ const main = async () => {
             // LIST TASKS
             case '2':
 
-                const tasksListArr = tasks.listArr;
-                if( tasksListArr.length === 0 ){
-                    console.log( 'No existen tareas para mostrar'.warning );
-                }else{
-                    console.log( tasksListArr );
-                }
+                tasks.listAll();
 
                 break;
         }
