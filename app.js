@@ -2,9 +2,14 @@
 // CLEAR CONSOLE
 console.clear();
 
-// OTHERS
+// OTHERS MODULES
 
-// OWN
+// OWN MODULES
+// DATASOURCE MANAGE
+const { 
+    saveDB,
+    readDB
+} = require('./helpers/datasource');
 // COLOR CONFIG
 require('./config/colors');
 // MESSAGES MODULE (MENU 0.1)
@@ -27,7 +32,7 @@ const main = async () => {
 
     let opt = '';
     // INIT TASKS MODEL
-    const tasks = new Tasks();
+    const tasks = new Tasks( readDB() );
 
     do{
 
@@ -63,6 +68,10 @@ const main = async () => {
                 break;
         }
 
+        // SAVE TASKS LIST
+        saveDB( tasks.listArr );
+
+        // PAUSE
         await pause();
 
     }while( opt !== '0' );

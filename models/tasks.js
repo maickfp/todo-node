@@ -21,8 +21,13 @@ class Tasks{
 
     }
 
-    constructor(){
+    constructor( initTasksList = [] ){
         this._list = {};
+
+        initTasksList.map( task => {
+            this._list[ task.id ] = task;
+        });
+
     }
 
     createTask( desc = '' ){
