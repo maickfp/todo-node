@@ -88,12 +88,14 @@ class Tasks{
             }
         });
 
-        this.listArr.map( ( task, i ) => {
+        let i = 1;
+        this.listArr.map( ( task ) => {
 
             const taskStatus = !!task.doneDate;
 
             if( taskStatus === completed ){
-                tasksTable.push( [ i + 1, task.desc ] );
+                tasksTable.push( [ i , task.desc ] );
+                i++;
             }
 
         });
