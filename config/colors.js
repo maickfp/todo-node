@@ -6,6 +6,9 @@ colors.setTheme({
     warning: ['bgYellow', 'black'],
     info: ['bgCyan', 'black'],
 
+    taskComleted: ['green'],
+    taskPending: ['red'],
+
     attention: ['magenta'],
 
     menuTitleLine: ['blue'],
