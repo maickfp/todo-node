@@ -42,10 +42,11 @@ class Tasks{
     deleteTask( id = '' ){
         
         if( !this._list[ id ] ){
-            console.log( `No existen tarea con id ${ id.attention } para borrar`.warning );
-        }else{
-            delete this._list[ id ];
+            return false;
         }
+        
+        delete this._list[ id ];
+        return true;
 
     }
 
