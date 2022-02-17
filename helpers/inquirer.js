@@ -76,8 +76,41 @@ const showInput = async ( message ) => {
 
 };
 
+const showConfirm = async ( message ) => {
+
+    const { confirm } = await inquirer.prompt({
+        type: 'confirm',
+        name: 'confirm',
+        message
+    });
+
+    return confirm;
+
+};
+
+const listTasksForDelete = async ( tasks = [] ) => {
+
+    const choices = tasks.map( ( task, i ) => {
+        return { 
+            value: task.id, 
+            name: `${ ( (i + 1) + '.' ).menuOptionNum } ${ task.desc }` 
+        }
+    });
+
+    const { taskId } = await inquirer.prompt({
+        type: 'list',
+        name: 'taskId',
+        message: 'Seleccione la tarea a borrar:',
+        choices
+    });
+
+    return taskId;
+
+};
+
 module.exports = {
     pause,
     showMainMenu,
-    showInput
+    showInput,
+    listTasksForDelete
 };
