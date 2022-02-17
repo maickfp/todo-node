@@ -97,6 +97,11 @@ const listTasksForDelete = async ( tasks = [] ) => {
         }
     });
 
+    choices.unshift({
+        value: '0', 
+        name: `${ '0.'.menuOptionNum } Cancelar` 
+    });
+
     const { taskId } = await inquirer.prompt({
         type: 'list',
         name: 'taskId',

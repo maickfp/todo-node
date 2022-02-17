@@ -82,6 +82,12 @@ const main = async () => {
             case '6':
 
                 const taskId = await listTasksForDelete( tasks.listArr );
+
+                if( taskId === '0' ){
+                    console.log( `Se ha cancelado el proceso de borrado`.warning );
+                    break;
+                }
+
                 const confirm = await showConfirm('¿Está segur@ que desea borrar la tarea seleccionada?');
 
                 if( !confirm ){
