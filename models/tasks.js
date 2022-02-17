@@ -39,6 +39,16 @@ class Tasks{
 
     }
 
+    deleteTask( id = '' ){
+        
+        if( !this._list[ id ] ){
+            console.log( `No existen tarea con id ${ id.attention } para borrar`.warning );
+        }else{
+            delete this._list[ id ];
+        }
+
+    }
+
     listAll(){
 
         const tasksTable = new Table({
