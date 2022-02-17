@@ -19,9 +19,11 @@ require('./config/colors');
     // } = require('./helpers/messages');
 // MENU MADE WITH inquirer
 const { 
-    showMainMenu,
     pause,
-    showInput
+    showInput,
+    showConfirm,
+    showMainMenu,
+    listTasksForDelete
 } = require('./helpers/inquirer');
 // IMPORT TASKS MODEL
 const Tasks = require('./models/tasks');
@@ -75,11 +77,33 @@ const main = async () => {
                 tasks.listByStatus( false );
 
                 break;
+
+            // DELETE TASK
+            case '6':
+
+                const taskId = await listTasksForDelete( tasks.listArr );
+                const confirm = await showConfirm('¿Está segur@ que desea borrar la tarea seleccionada?');
+
+                if( !confirm ){
+                    console.log( `Se ha cancelado el proceso de borrado`.warning );
+                    break;
+                }
+
+                const taskDeleted = tasks.deleteTask( taskId );
+
+                if( taskDeleted ){
+                    console.log( `¡Tarea borrada!`.success );
+                }else{
+                    console.log( `No se ha borrado la tarea seleccionada`.error );
+                }
+
+                break;
+
         }
 
         // SAVE TASKS LIST
         saveDB( tasks.listArr );
-
+        
         // PAUSE
         await pause();
 
