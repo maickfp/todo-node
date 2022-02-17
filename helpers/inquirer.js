@@ -110,7 +110,8 @@ const listTasksForDelete = async ( tasks = [] ) => {
 
 module.exports = {
     pause,
-    showMainMenu,
     showInput,
+    showConfirm,
+    showMainMenu,
     listTasksForDelete
 };
