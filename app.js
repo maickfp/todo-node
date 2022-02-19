@@ -23,7 +23,8 @@ const {
     showInput,
     showConfirm,
     showMainMenu,
-    listTasksForDelete
+    listTasksToDelete,
+    listTasksToComplete
 } = require('./helpers/inquirer');
 // IMPORT TASKS MODEL
 const Tasks = require('./models/tasks');
@@ -78,10 +79,33 @@ const main = async () => {
 
                 break;
 
+            // COMPLETE TASK(S)
+            case '5':
+
+                const tasksArr5 = tasks.listArr;
+                if( tasksArr5.length === 0 ){
+                    console.log( 'No existen tareas para mostrar'.warning );
+                    break;
+                }
+
+                const tasksId = await listTasksToComplete( tasksArr5 );
+
+                tasks.toggleTasksStatus( tasksId );
+
+                console.log( `¡Tareas actualizadas!`.success );
+
+                break;
+
             // DELETE TASK
             case '6':
 
-                const taskId = await listTasksForDelete( tasks.listArr );
+                const tasksArr6 = tasks.listArr;
+                if( tasksArr6.length === 0 ){
+                    console.log( 'No existen tareas para mostrar'.warning );
+                    break;
+                }
+
+                const taskId = await listTasksToDelete( tasksArr6 );
 
                 if( taskId === '0' ){
                     console.log( `Se ha cancelado el proceso de borrado`.warning );
