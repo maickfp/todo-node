@@ -24,6 +24,7 @@
   "dependencies": {
     "cli-table": "^0.3.11",
     "colors": "^1.4.0",
+    "dayjs": "^1.10.7",
     "inquirer": "^8.2.0",
     "uuid": "^8.3.2"
   }
