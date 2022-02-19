@@ -1,5 +1,8 @@
 // IMPORT OTHERS MODULES
+// DISPLAY TABLES ON CONSOLE
 const Table = require('cli-table');
+// DATE MANIMULATION
+const dayjs = require('dayjs');
 
 // IMPORT MY CLASSES
 const Task = require('./task');
@@ -90,13 +93,13 @@ class Tasks{
         {
             head: ['Num', 'Descripción', 'Fecha' ],
             colAligns: [ 'middle', 'left', 'middle' ],
-            colWidths: [ 5, 60, 15 ]
+            colWidths: [ 5, 60, 25 ]
         }
         :
         {
             head: ['Num', 'Descripción' ],
             colAligns: [ 'middle', 'left' ],
-            colWidths: [ 5, 75 ]
+            colWidths: [ 5, 60 ]
         } ;
 
         const tasksTable = new Table({
@@ -135,6 +138,24 @@ class Tasks{
         }else{
             console.log( tasksTable.toString() );
         }
+
+    }
+
+    toggleTasksStatus( tasksId = [] ){
+
+        this.listArr.forEach( ( task ) => {
+
+            const done = tasksId.includes( task.id );
+            
+            if( done && !task.doneDate ){
+                task.doneDate = dayjs().format('YYYY-MM-DD HH:mm:ss');
+            }
+
+            if( !done ){
+                task.doneDate = null;
+            }
+
+        });
 
     }
 
