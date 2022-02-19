@@ -88,7 +88,7 @@ const showConfirm = async ( message ) => {
 
 };
 
-const listTasksForDelete = async ( tasks = [] ) => {
+const listTasksToDelete = async ( tasks = [] ) => {
 
     const choices = tasks.map( ( task, i ) => {
         return { 
@@ -113,10 +113,32 @@ const listTasksForDelete = async ( tasks = [] ) => {
 
 };
 
+const listTasksToComplete = async ( tasks = [] ) => {
+
+    const choices = tasks.map( ( task, i ) => {
+        return { 
+            value: task.id, 
+            name: `${ ( (i + 1) + '.' ).menuOptionNum } ${ task.desc }`,
+            checked: !!task.doneDate
+        }
+    });
+
+    const { tasksId } = await inquirer.prompt({
+        type: 'checkbox',
+        name: 'tasksId',
+        message: 'Seleccione la(s) tareas(s) a completar:',
+        choices
+    });
+
+    return tasksId;
+
+};
+
 module.exports = {
     pause,
     showInput,
     showConfirm,
     showMainMenu,
-    listTasksForDelete
+    listTasksToDelete,
+    listTasksToComplete
 };
