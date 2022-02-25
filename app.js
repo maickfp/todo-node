@@ -5,6 +5,10 @@ console.clear();
 // OTHERS MODULES
 
 // OWN MODULES
+// FLAGS AND PARAMS
+const {
+    adm
+} = require('./config/yargs');
 // DATASOURCE MANAGE
 const { 
     saveDB,
@@ -40,7 +44,7 @@ const main = async () => {
     do{
 
         // SHOW MENU
-        opt = await showMainMenu();
+        opt = await showMainMenu( adm );
 
         switch (opt) {
 
