@@ -28,7 +28,21 @@ const pause = async () => {
 
 };
 
-const mainMenu = {
+const mainUserMenu = {
+    type: 'list',
+    name: 'option',
+    message: '¿Qué desea hacer?',
+    loop: false,
+    choices: [
+        { value: '1', name: `${'1.'.menuOptionNum} Crear tarea` },
+        { value: '2', name: `${'2.'.menuOptionNum} Listar tareas` },
+        { value: '4', name: `${'3.'.menuOptionNum} Listar tareas pendientes` },
+        { value: '5', name: `${'4.'.menuOptionNum} Completar tarea(s)` },
+        { value: '0', name: `${'0.'.menuOptionNum} Salir` }
+    ]
+};
+
+const mainAdminMenu = {
     type: 'list',
     name: 'option',
     message: '¿Qué desea hacer?',
@@ -44,12 +58,12 @@ const mainMenu = {
     ]
 };
 
-const showMainMenu = async () => {
+const showMainMenu = async ( adminMode ) => {
 
     
     showTitle();
 
-    const { option } = await inquirer.prompt( mainMenu );
+    const { option } = await inquirer.prompt( adminMode ? mainAdminMenu : mainUserMenu );
 
     return option;
 
